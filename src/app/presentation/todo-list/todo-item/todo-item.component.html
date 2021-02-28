@@ -1,0 +1,46 @@
+<ng-container *ngIf="store$ | async as vm">
+  <ng-container *ngIf="!vm.isEditing">
+    {{vm.item.id}}
+    {{vm.item.title}}
+    <app-milestone 
+      [milestone]="vm.item.milestone"
+    ></app-milestone>
+    <app-step 
+      [step]="vm.item.step"
+      [isEditing]="false"
+    ></app-step>
+    <button type="button" (click)="edit()">編集</button>
+  </ng-container>
+
+  <ng-container *ngIf="vm.isEditing && vm.isUpdating">
+    {{vm.form!.id}}
+    <app-title 
+      [title]="vm.form!.title"
+      [isEditing]="false"
+    ></app-title>
+    <app-milestone [milestone]="vm.form!.milestone"></app-milestone>
+    <app-step 
+      [step]="vm.form!.step"
+      [isEditing]="false"
+    ></app-step>
+    <button type="button" disabled>キャンセル</button>
+    <button type="button" disabled>保存中...</button>
+  </ng-container>
+
+  <ng-container *ngIf="vm.isEditing && !vm.isUpdating">
+    {{vm.item.id}}
+    <app-title 
+      [title]="vm.form!.title"
+      [isEditing]="true"
+      (onChange)="handleTitleChange($event)"
+    ></app-title>
+    <app-milestone [milestone]="vm.form!.milestone"></app-milestone>
+    <app-step 
+      [step]="vm.form!.step"
+      [isEditing]="true"
+      (onChange)="handleStepChange($event)"
+    ></app-step>
+    <button type="button" (click)="reset()">キャンセル</button>
+    <button type="button" (click)="update()">保存</button>
+  </ng-container>
+</ng-container>

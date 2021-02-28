@@ -1,0 +1,12 @@
+<ng-container *ngIf="!isEditing">
+  <span>{{ title }}</span>
+</ng-container>
+
+<ng-container *ngIf="isEditing">
+  <input 
+    type="text"
+    (change)="handleChange(input.value)"
+    [value]="title"
+    #input
+  >
+</ng-container>

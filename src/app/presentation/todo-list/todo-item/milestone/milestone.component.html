@@ -1,0 +1,9 @@
+<ng-container *ngIf="milestone.type === 'due-date'">
+  <span>{{asDueDate().dueDate | date: 'MM.dd'}}</span>
+</ng-container>
+
+<ng-container *ngIf="milestone.type === 'span'">
+  <span>{{asSpan().from | date: 'MM.dd'}}</span>
+  <span>〜</span>
+  <span>{{asSpan().to | date: 'MM.dd'}}</span>
+</ng-container>

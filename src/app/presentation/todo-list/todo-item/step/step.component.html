@@ -1,0 +1,13 @@
+<ng-container *ngIf="!isEditing">
+  <span>{{ chosen.label }}</span>
+</ng-container>
+
+<ng-container *ngIf="isEditing">
+  <select #step (change)="handleChange(step.value)">
+    <option 
+      *ngFor="let item of choices; trackBy: trackByFn"
+      [value]="item.type"
+      [selected]="chosen.type === item.type"
+    >{{ item.label }}</option>
+  </select>
+</ng-container>

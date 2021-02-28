@@ -1,0 +1,9 @@
+<ng-container *ngIf="state$ | async as vm">
+  <app-loading [isLoading]="vm.isLoading"></app-loading>
+  
+  <ul *ngFor="let item of vm.list; index as index">
+    <li>
+      <app-todo-item [item]="item"></app-todo-item>
+    </li>
+  </ul>
+</ng-container>
